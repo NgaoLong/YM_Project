@@ -22,9 +22,6 @@ import java.util.Map;
 
 import org.json.JSONObject;
 
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.android.volley.AuthFailureError;
@@ -32,17 +29,11 @@ import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
-import com.de.cocomero.activities.SNAPBaseActivity;
-import com.de.cocomero.common.SNAPApplication;
-import com.de.cocomero.entities.leafs.AResponse;
-import com.de.cocomero.utils.NetworkUtil;
-import com.de.cocomero.utils.SharedPreferencesHelper;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
@@ -95,14 +86,14 @@ public class GsonRequest<T> extends Request<T> {
 	public Map<String, String> getHeaders() throws AuthFailureError {
 		Map<String, String> headers = new HashMap<String, String>();
 		// headers.put("Content-Type", "application/x-www-form-urlencoded");
-		headers.put("Accept", "application/vnd.defide.snap.v1 + json");
+		headers.put("Accept", "application/ym.v1 + json");
 
-		SharedPreferences sharedPreferences = SNAPApplication.getInstance().getSharedPreferences(
-				SharedPreferencesHelper.SNAP_PREF_FILE, Context.MODE_PRIVATE);
-		String accessToken = sharedPreferences.getString(SharedPreferencesHelper.ACCESS_TOKEN, null);
-		if (accessToken != null) {
-			headers.put("Authorization", "Bearer " + accessToken);
-		}
+//		SharedPreferences sharedPreferences = SNAPApplication.getInstance().getSharedPreferences(
+//				SharedPreferencesHelper.SNAP_PREF_FILE, Context.MODE_PRIVATE);
+//		String accessToken = sharedPreferences.getString(SharedPreferencesHelper.ACCESS_TOKEN, null);
+//		if (accessToken != null) {
+//			headers.put("Authorization", "Bearer " + accessToken);
+//		}
 		return headers;
 	}
 
@@ -127,9 +118,9 @@ public class GsonRequest<T> extends Request<T> {
 			if(sNext != null && sNext.trim().length() > 0){
 				int next = Integer.parseInt(sNext);
 				if(next > 0){
-					if(t instanceof AResponse){
-						((AResponse)t).setNext(next);
-					}
+//					if(t instanceof AResponse){
+//						((AResponse)t).setNext(next);
+//					}
 				}
 			}
 			return Response.success(t, HttpHeaderParser.parseCacheHeaders(response));
@@ -192,27 +183,27 @@ public class GsonRequest<T> extends Request<T> {
 	}
 
 	public void performRequest() {
-		final SNAPApplication context = SNAPApplication.getInstance();
-		final RequestQueue queue = context.getRequestQueue();
-		if (NetworkUtil.isConnected(context)) {
-			queue.add(this);
-		} else {
-			handleError(new GsonVolleyError("", 9999));
-			if (SNAPBaseActivity.sInstance != null) {
-				SNAPBaseActivity.sInstance.showNonNetwordErrorDialog(new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						SNAPBaseActivity.isShowing = false;
-					}
-				}, new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						SNAPBaseActivity.isShowing = false;
-						performRequest();
-					}
-				});
-			}
-		}
+//		final SNAPApplication context = SNAPApplication.getInstance();
+//		final RequestQueue queue = context.getRequestQueue();
+//		if (NetworkUtil.isConnected(context)) {
+//			queue.add(this);
+//		} else {
+//			handleError(new GsonVolleyError("", 9999));
+//			if (SNAPBaseActivity.sInstance != null) {
+//				SNAPBaseActivity.sInstance.showNonNetwordErrorDialog(new DialogInterface.OnClickListener() {
+//					@Override
+//					public void onClick(DialogInterface dialog, int which) {
+//						SNAPBaseActivity.isShowing = false;
+//					}
+//				}, new DialogInterface.OnClickListener() {
+//					@Override
+//					public void onClick(DialogInterface dialog, int which) {
+//						SNAPBaseActivity.isShowing = false;
+//						performRequest();
+//					}
+//				});
+//			}
+//		}
 	}
 
 	private void handleError(VolleyError error) {

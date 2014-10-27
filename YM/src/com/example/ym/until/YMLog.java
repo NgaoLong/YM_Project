@@ -2,7 +2,7 @@ package com.example.ym.until;
 
 import android.util.Log;
 
-import com.de.cocomero.BuildConfig;
+import com.example.ym.BuildConfig;
 
 public class YMLog {
 
