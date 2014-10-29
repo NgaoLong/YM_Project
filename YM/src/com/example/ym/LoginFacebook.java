@@ -1,20 +1,17 @@
 package com.example.ym;
 
-import java.util.Arrays;
-import java.util.List;
+import java.text.Normalizer;
+import java.text.Normalizer.Form;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
-import com.example.ym.systemconfigure.FacebookPermissions;
-import com.facebook.HttpMethod;
-import com.facebook.Request;
-import com.facebook.Response;
+import com.example.ym.until.Until;
 import com.facebook.Session;
 import com.facebook.SessionState;
-import com.facebook.UiLifecycleHelper;
-import com.facebook.model.GraphUser;
+import com.facebook.android.Util;
 import com.facebook.widget.LoginButton;
 
 public class LoginFacebook extends YMBaseActivity {
@@ -26,15 +23,17 @@ public class LoginFacebook extends YMBaseActivity {
 	/******************************************************************
 	 * Method override
 	 */
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login_activity);
 		findViews();
-		setReadPermissionsForLoginFacebookButton();
-		
+		setReadPermissionsForLoginFacebookButton();	
 	
 	}
+
 
 	@Override
 	public void onResume() {

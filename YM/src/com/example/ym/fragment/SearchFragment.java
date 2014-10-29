@@ -1,15 +1,18 @@
 package com.example.ym.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.ym.R;
 
-public class SearchFragment extends YMBaseFragment{
-	private final long userSearchDefaultID = 0;
+public class SearchFragment extends YMBaseFragment {
+	private final String TAG = SearchFragment.class.getSimpleName();
+	private long userSearchDefaultID = 0;
 	
+
 	/******************************************************************
 	 * Method override
 	 */
@@ -17,20 +20,29 @@ public class SearchFragment extends YMBaseFragment{
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		View view = (View) inflater.inflate(R.layout.search_fragment, container,
-				false);
+		View view = (View) inflater.inflate(R.layout.search_fragment,
+				container, false);
+		
+		initDataDefault();
+		Log.e(TAG,userSearchDefaultID+ " ");
 		return view;
 	}
-	
+
 	/****
 	 * End Method override
 	 **********************************************************************/
-	
+
 	/************************************************************
 	 * User Control - UI
 	 */
-//	private void search 
-	
+
+	private void initDataDefault() {
+		userSearchDefaultID = Long.valueOf("100001455800954");
+		
+	}
+
+	// private void search
+
 	/**
 	 * End User Control - UI
 	 *****************************************************************************/
@@ -38,7 +50,7 @@ public class SearchFragment extends YMBaseFragment{
 	/************************************************************
 	 * Implement
 	 */
-	
+
 	/**
 	 * End Implement
 	 *****************************************************************************/

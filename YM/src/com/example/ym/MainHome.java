@@ -1,13 +1,8 @@
 package com.example.ym;
 
-import com.facebook.Session;
-import com.facebook.SessionState;
-import com.facebook.UiLifecycleHelper;
-import com.facebook.widget.LoginButton;
+import com.example.ym.fragment.SearchFragment;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 
 public class MainHome extends YMBaseActivity {
 	protected final String TAG = MainHome.class.getSimpleName();
@@ -20,7 +15,9 @@ public class MainHome extends YMBaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		Log.e("AAA",Session.getActiveSession().getAccessToken());
+//		Log.e("AAA",Session.getActiveSession().getAccessToken());
+	  SearchFragment fragment = new SearchFragment();
+	  fragment.setFragment(this, fragment,R.id.contentFragment);
 	}
 
 	@Override
